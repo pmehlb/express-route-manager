@@ -1,0 +1,92 @@
+/* to provide sidebar functionality (not theming) */
+:root {
+    /* for CSS transitions */
+    /* from an OG CSS tool: https://matthewlein.com/tools/ceaser */
+    --ease-in: all 250ms cubic-bezier(0.895, 0.030, 0.685, 0.220); /* easeInQuart */
+    --ease-out: all 250ms cubic-bezier(0.165, 0.840, 0.440, 1.000); /* easeOutQuart */
+    --ease: all 250ms cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
+}
+
+/* to allow the sidebar to sit outside or view without a scrollbar */
+html, body {
+    overflow-x: hidden;
+}
+
+/* set up the top nav-bar, top fixed style */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: 60px;
+    overflow: hidden;
+    z-index: 2;
+}
+/* set up slide-out side-bar */
+nav#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-top: 60px;
+    /* either 280px or 10vw, whatever is smaller */
+    width: min(280px, 10vw);
+    height: 100%;
+    /* start the sidebar offset to the left by it's width */
+    transform: translateX(min(-280px, -10vw));
+    transition: var(--ease-out);
+}
+/* set up main page content */
+main {
+    display: block;
+    margin: 60px auto 0 auto;
+    height: 100%;
+}
+
+/* sidebar link styling */
+ul.menu {
+    list-style: none;
+}
+
+/* main slide-out animation */
+#sidebar-toggle:checked ~ nav#menu {
+    transform: translateX(0);
+}
+
+/* hamburger lines + animations */
+#sidebar-toggle {
+    display: none;
+    box-sizing: border-box;
+    transition: var(--ease);
+}
+.toggle-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    box-sizing: border-box;
+
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: var(--ease);
+    z-index: 3;
+}
+.bar {
+    position: absolute;
+    margin-left: 14px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 3px;
+    transition: var(--ease);
+}
+.top { margin-top: 18px; }
+.middle { margin-top: 28px; }
+.bottom { margin-top: 38px; }
+/* once checked */
+#sidebar-toggle:checked ~ .toggle-icon > .middle { transform: rotateY(90deg); opacity: 0; }
+#sidebar-toggle:checked ~ .toggle-icon > .top { transform: rotate(135deg); margin-top: 29px; }
+#sidebar-toggle:checked ~ .toggle-icon > .bottom { transform: rotate(-135deg); margin-top: 29px; }

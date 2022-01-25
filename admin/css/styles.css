@@ -1,0 +1,100 @@
+/**
+ * main file for structure and (mainly) theming/colors + fonts
+ * -----------------------------------------------------------
+ * Fonts with: http://fonts.google.com
+ * Gradients with: https://cssgradient.io/gradient-backgrounds/
+ */
+:root {
+    /* menu hamburger color */
+    --menu-color: rgba(255,255,255,0.95);
+
+    /* for CSS transitions */
+    /* from an OG CSS tool: https://matthewlein.com/tools/ceaser */
+    --ease-in: all 250ms cubic-bezier(0.895, 0.030, 0.685, 0.220); /* easeInQuart */
+    --ease-out: all 250ms cubic-bezier(0.165, 0.840, 0.440, 1.000); /* easeOutQuart */
+    --ease: all 250ms cubic-bezier(0.785, 0.135, 0.150, 0.860); /* easeInOutCirc */
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    /* theming! */
+    background: #eee;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+/* have links inherit their parent color + no underline */
+a { color: inherit; text-decoration: none; }
+
+#top-bar {
+    background: #000046; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #000046, #1cb5e0); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #000046, #1cb5e0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#sidebar > #menu {
+    background: #E2E2E2; /* fallback for old browsers */
+    background: linear-gradient(135deg, rgba(0,0,75,0.3), rgba(28,181,224,0.1));
+    border-right: solid rgba(0,0,0,0.3);
+    transition: var(--ease);
+}
+#sidebar-toggle ~ #menu { border-right-width: 0; }
+#sidebar-toggle:checked ~ #menu { border-right-width: 2px; }
+#main {
+    background: #EFF2FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #E2E2E2, #EFF2FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #E2E2E2, #EFF2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* sidebar */
+.bar { background-color: var(--menu-color); }
+ul.menu {
+    padding: 5px;
+}
+ul.menu > li.menu-link {
+    margin: 10px 25px 10px 4px;
+    padding: 5px;
+    font-size: 28px;
+    border-bottom: 1px solid #222;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    color: #000046;
+    transition: var(--ease);
+}
+ul.menu > li.menu-link:hover {
+    font-size: 31px;
+    border-bottom-width: 2px;
+}
+ul.menu > li.menu-link.active {
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom-width: 2px;
+    border-bottom-color: #111;
+    border-bottom-color: rgba(0,0,0,0.5);
+}
+li.shameless-plug {
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+    width: calc(100% - 2 * (20px));
+    margin: 10px 20px 0 20px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.3);
+
+    font-size: 20px;
+    text-align: center;
+    text-transform: lowercase;
+    color: #106C86;
+    color: rgba(20,100,135,0.8);
+}
+li.shameless-plug .show-off {
+    transition: var(--ease);
+    text-decoration: underline;
+}
+li.shameless-plug:hover .show-off {
+    color: black;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
