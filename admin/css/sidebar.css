@@ -33,17 +33,17 @@ nav#menu {
     display: block;
     margin-top: 60px;
     /* either 280px or 10vw, whatever is smaller */
-    width: min(280px, 10vw);
+    width: 280px;
     height: 100%;
     /* start the sidebar offset to the left by it's width */
-    transform: translateX(min(-280px, -10vw));
+    transform: translateX(-280px);
     transition: var(--ease-out);
 }
 /* set up main page content */
 main {
     display: block;
     margin: 60px auto 0 auto;
-    height: 100%;
+    height: calc(100% - 60px);
 }
 
 /* sidebar link styling */
